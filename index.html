@@ -1,0 +1,381 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Idea Galaxy 9.0 — Real Nature</title><style>
+*{box-sizing:border-box}body{margin:0;background:#050918;color:#eef3ff;font-family:system-ui,-apple-system,sans-serif}header{padding:17px 24px;background:linear-gradient(110deg,#111a39,#1b1840);border-bottom:1px solid #6373ae55}h1{margin:0;font-size:23px}header small{font-size:12px;color:#b4b5ff}header p{margin:5px 0 0;font-size:13px;color:#b6c5e6}.layout{display:grid;grid-template-columns:300px minmax(0,1fr);height:calc(100dvh - 84px);min-height:550px}aside{overflow-y:auto;padding:20px;background:linear-gradient(150deg,#101936,#0a1128);border-right:1px solid #7180ba44}label{display:block;font-size:13px;font-weight:650;color:#c6d5fb;margin:14px 0 7px}input[type=text]{width:100%;padding:11px 12px;border:1px solid #596b9b;border-radius:10px;background:#080f24;color:white;font-size:15px}button{border:0;border-radius:10px;background:linear-gradient(110deg,#83baff,#b09cff);color:#0a1531;font-weight:750;padding:11px 12px;cursor:pointer}aside button{width:100%;margin-top:9px}button.secondary{background:#243355;color:#e8eeff;border:1px solid #6c83b055}button:disabled{opacity:.45;cursor:not-allowed}.hint{font-size:12px;line-height:1.6;color:#aebee0}.selected{padding:12px;border:1px solid #617ab35a;border-radius:10px;background:#1b2950;overflow-wrap:anywhere}.panel{margin-top:18px;padding:14px;border:1px solid #7b72b45e;border-radius:13px;background:#191d40}.panel h2{margin:0;font-size:16px}.suggestion{margin-top:10px;padding:11px;border-radius:10px;border:1px solid #7487b44d;background:#101c38}.suggestion strong{font-size:13px}.suggestion p{font-size:12px;color:#b8c7e7}.suggestion button{font-size:12px;padding:8px;background:#334a7a;color:white}.stage{position:relative;min-height:0;overflow:hidden;background:radial-gradient(ellipse at 60% 35%,#1c1c4a,#070c1e 65%,#02040d);touch-action:none}#viewport{position:absolute;inset:0}#viewport canvas{display:block;width:100%;height:100%;touch-action:none}.toolbar{position:absolute;z-index:2;right:12px;top:12px;display:grid;gap:7px}.toolbar button{width:42px;height:42px;padding:0;font-size:20px;background:#15244cd9;color:#f1f5ff;border:1px solid #9eb6ed66}.tag{position:absolute;z-index:2;top:13px;left:14px;font-size:12px;color:#c4d5fb;background:#09142cbb;padding:9px 12px;border:1px solid #7388c34d;border-radius:9px;pointer-events:none;max-width:calc(100% - 85px)}.bottom{position:absolute;z-index:2;bottom:12px;left:12px;font-size:12px;color:#d0dcf6;background:#08152acb;padding:9px 12px;border:1px solid #778ac344;border-radius:10px}.depth{position:absolute;z-index:2;bottom:12px;right:12px;width:184px;padding:12px;border-radius:12px;background:#09142de8;border:1px solid #7b91c66b}.depth label{margin:0 0 7px}.depth input{width:100%;accent-color:#b3a4ff}.depth button{width:100%;margin-top:9px;font-size:12px;padding:8px;background:#253c68;color:white}.status{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%);max-width:85%;padding:20px;border-radius:14px;background:#0b1734ee;color:#e6edff;text-align:center;border:1px solid #728cbd88}.status[hidden]{display:none}.pill{font-size:11px;color:#a5b9e4}.depth .pill{margin-top:6px}select{width:100%;padding:10px;background:#101a39;color:#f3f5ff;border:1px solid #728ac5;border-radius:9px}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid white;outline-offset:2px}@media(max-width:700px){.layout{display:flex;flex-direction:column;height:auto}aside{overflow:visible;order:2}.stage{height:65dvh;min-height:420px;order:1}.depth{width:150px}.bottom{max-width:calc(100% - 175px)}header{padding:13px 16px}}
+
+/* 8.4: the universe always occupies the screen; settings are a collapsible drawer. */
+.layout,body.space-focus .layout{display:block;height:calc(100dvh - 84px);min-height:0;position:relative}
+.stage,body.space-focus .stage{height:100%;min-height:0;width:100%}
+.layout aside,body.space-focus .layout aside{display:none}
+body.settings-open .layout aside{display:block;position:fixed;z-index:51;top:0;left:0;bottom:0;width:min(350px,calc(100vw - 48px));overflow-y:auto;box-shadow:10px 0 55px #000c;border-right:1px solid #8da7eb80}
+#spaceNav{position:fixed;z-index:53;left:16px;top:96px;right:auto;bottom:auto;box-shadow:0 4px 24px #0009;background:#26365e;color:white;border:1px solid #9cafff}
+body.settings-open #spaceNav{left:min(245px,calc(100vw - 154px));top:12px;background:#28365a}
+#settingsShade{display:none;position:fixed;inset:0;background:#0009;z-index:50}
+body.settings-open #settingsShade{display:block}
+@media(max-width:700px){.layout,body.space-focus .layout{height:calc(100dvh - 76px)}.stage,body.space-focus .stage{height:100%;min-height:0;order:initial}header{padding:13px 16px}#spaceNav{top:84px}}
+.settings-heading{font-size:20px;margin:2px 0 15px;color:#f4f3ff}.planet-settings{margin-top:24px;border-color:#9e89df99;background:linear-gradient(140deg,#27204d,#151b39)}.planet-settings h2{font-size:17px;margin-bottom:10px}.planet-settings select{margin-top:5px}
+
+.discovery-panel{border-color:#5cd7d699;background:linear-gradient(145deg,#103b4c,#191a42)}
+.discovery-panel .discovery-count{font-size:12px;color:#b9e9ec;margin:8px 0}
+.discovery-panel .find-card{padding:10px;margin:9px 0;background:#0c213b;border:1px solid #638ca388;border-radius:10px}
+.discovery-panel .find-card p{font-size:12px;line-height:1.6;color:#d1e8ff;margin:6px 0}
+.discovery-panel .find-card button{font-size:12px;padding:9px}
+.discovery-panel .locked{opacity:.8}
+#discoverQuick{position:absolute;z-index:4;left:12px;top:55px;background:#143d51e8;color:#dbffff;border:1px solid #71e1e6aa;font-size:12px}
+@media(max-width:700px){#discoverQuick{top:58px}}
+
+/* 8.6 planetary surface expedition */
+#landQuick{position:absolute;z-index:4;left:12px;top:98px;background:#2c315fe8;color:#fff;border:1px solid #b1a5ffaa;font-size:12px}
+#surfaceHUD{position:absolute;z-index:12;inset:0;pointer-events:none;display:none}
+#surfaceHUD.active{display:block}
+.surface-top{position:absolute;top:12px;left:12px;right:65px;max-width:430px;background:#07172bdc;border:1px solid #7acbda99;border-radius:13px;padding:12px 15px;pointer-events:auto}
+.surface-top strong{display:block;font-size:15px;margin-bottom:4px}.surface-top p{margin:4px 0;font-size:12px;line-height:1.5;color:#c9dff1}
+.surface-top button{margin-top:6px;padding:8px 12px;background:#b4e8f5;color:#092239}
+.surface-controls{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:grid;grid-template-columns:repeat(3,48px);gap:5px;pointer-events:auto}
+.surface-controls button{height:45px;padding:0;background:#182c51dc;color:white;border:1px solid #9dc8f388;font-size:18px;touch-action:manipulation}
+.surface-controls .up{grid-column:2}.surface-controls .left{grid-column:1}.surface-controls .down{grid-column:2}.surface-controls .right{grid-column:3}
+#surfaceFind{position:absolute;right:12px;bottom:18px;width:min(270px,43vw);padding:12px;background:#081d30eb;border:1px solid #81d4cbaa;border-radius:12px;pointer-events:auto}
+#surfaceFind p{font-size:12px;line-height:1.5;margin:6px 0}#surfaceFind button{font-size:12px;padding:9px;width:100%}
+#surfaceFind button:disabled{opacity:.6}
+body.surface-active .tag,body.surface-active .toolbar,body.surface-active .bottom,body.surface-active .depth,body.surface-active #discoverQuick,body.surface-active #landQuick{display:none}
+@media(max-width:700px){#landQuick{top:99px}#surfaceFind{bottom:172px;width:min(240px,64vw)}.surface-top{max-width:calc(100% - 75px)}.surface-controls{bottom:14px;left:15px;transform:none}}
+</style></head><body><header><h1>✦ Idea Galaxy <small>8.9 · LIVING NATURE</small></h1><p>揺れる木々、波打つ水面、漂う霧と光の粒子。生きている惑星を探索しよう。</p></header><div class="layout"><aside><h2 class="settings-heading">⚙ 設定</h2><p class="hint">① アイデアを入力して宇宙を作成。② 星をクリックして選択。③ 新しい星を追加したり、発想アシスタントを使ったりできます。</p><label for="rootIdea">最初のアイデア</label><input type="text" id="rootIdea" value="未来の学校" placeholder="例：未来の学校"><button id="create">宇宙を作る</button><label>選択中の星</label><div class="selected" id="selected">まだ星がありません</div><label for="childIdea">この星から広げるアイデア</label><input type="text" id="childIdea" placeholder="例：教室のない学校"><button id="add">新しい星を追加</button><section class="panel"><h2>✧ 発想アシスタント</h2><p class="hint">選んだ星から3つの発想を提案します（ルールベース・AI APIなし）。</p><button id="suggest">アイデアを3つ提案</button><div id="suggestions" aria-live="polite"></div></section><button id="reset" class="secondary">すべてリセット</button><p class="hint">ドラッグ：視点回転／右ドラッグ：平行移動／ホイール：ズーム／星をクリック：選択。星のドラッグ移動は「星を動かす」モードで行えます。</p><button id="moveMode" class="secondary">星を動かす：OFF</button><p class="hint">以前のバージョンと同じ保存キーを使用します。ブラウザの保存データを消すと失われる場合があります。</p></aside><main class="stage" id="stage"><div id="viewport"></div><div class="tag">✧ 星雲・銀河・流れ星の中でアイデアを探そう</div><button id="discoverQuick" type="button">🔎 惑星を探索</button><button id="landQuick" type="button">🛬 惑星に降り立つ</button><div id="surfaceHUD" aria-live="polite"><div class="surface-top"><strong id="surfaceTitle">惑星探検</strong><p id="biomeName" style="color:#9ce9dc;font-weight:700">地形を生成中…</p><p id="surfaceHint">矢印キー・WASDで歩き、← →で向きを変えられます。</p><button id="surfaceReturn" type="button">🚀 宇宙へ戻る</button></div><div id="surfaceFind"><strong id="surfacePlace">未知の地表</strong><p id="surfaceDescription">光る目印を探して近づこう。</p><button id="surfaceDiscover" type="button" disabled>発見する</button></div><div class="surface-controls"><button class="up" data-step="forward" aria-label="前進">↑</button><button class="left" data-step="left" aria-label="左を向く">↶</button><button class="down" data-step="back" aria-label="後退">↓</button><button class="right" data-step="right" aria-label="右を向く">↷</button></div></div><div class="toolbar"><button id="zoomIn" title="拡大" aria-label="拡大">＋</button><button id="zoomOut" title="縮小" aria-label="縮小">−</button><button id="centerView" title="中心に戻す" aria-label="中心に戻す">⌖</button></div><div class="bottom" id="stats">✦ 星 0 個 · 3D</div><div class="depth"><label for="tilt">視点の傾き <span id="tiltValue">25°</span></label><input id="tilt" type="range" min="0" max="65" value="25"><div class="pill">カメラの高さを調整</div><button id="autoOrbit">自動カメラ：OFF</button></div><div class="status" id="status">3D宇宙を読み込み中…</div></main></div>
+<div id="settingsShade"></div><button id="spaceNav" type="button" aria-expanded="false">⚙ 設定を開く</button>
+<script>
+(function(){
+const btn=document.getElementById('spaceNav');
+const shade=document.getElementById('settingsShade');
+function setOpen(on){
+ document.body.classList.toggle('settings-open',on);
+ btn.textContent=on?'✕ 設定を閉じる':'⚙ 設定を開く';
+ btn.setAttribute('aria-expanded',String(on));
+ window.dispatchEvent(new Event('resize'));
+}
+btn.addEventListener('click',()=>setOpen(!document.body.classList.contains('settings-open')));
+shade.addEventListener('click',()=>setOpen(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+setOpen(false);
+})();
+</script>
+<script type="module">
+const $=id=>document.getElementById(id);const status=$('status');let THREE;
+try{THREE=await import('https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js')}catch(e){status.textContent='3Dライブラリを読み込めませんでした。インターネット接続またはブラウザの制限で3Dを読み込めません。Chrome / Edgeで開き、ネット接続を確認してください。「宇宙を全画面で見る」ボタンは引き続き使えます。';throw e}
+const stage=$('stage'),view=$('viewport'),scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x060a1c,.00065);
+const camera=new THREE.PerspectiveCamera(55,1,1,12000);const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));renderer.outputColorSpace=THREE.SRGBColorSpace;view.appendChild(renderer.domElement);
+scene.add(new THREE.AmbientLight(0x829aff,1.3));const lamp=new THREE.PointLight(0xaabfff,200000,1700);lamp.position.set(100,160,230);scene.add(lamp);
+function nebula(){const geo=new THREE.BufferGeometry(),arr=[];for(let i=0;i<2300;i++){const r=950+Math.random()*4200,a=Math.random()*Math.PI*2,z=(Math.random()-.5)*2700;arr.push(Math.cos(a)*r,Math.sin(a)*r,z)}geo.setAttribute('position',new THREE.Float32BufferAttribute(arr,3));const pts=new THREE.Points(geo,new THREE.PointsMaterial({color:0xa9bfff,size:4.5,sizeAttenuation:true,transparent:true,opacity:.82,depthWrite:false}));scene.add(pts)}nebula();
+const ring=new THREE.Mesh(new THREE.TorusGeometry(320,1.2,5,180),new THREE.MeshBasicMaterial({color:0x667bd9,transparent:true,opacity:.22}));ring.rotation.x=Math.PI/2;scene.add(ring);
+// Dream Cosmos: procedural nebulae, spiral galaxy, sparkling dust and meteors.
+const dream=new THREE.Group();scene.add(dream);
+function glowTexture(){const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d'),g=x.createRadialGradient(64,64,0,64,64,64);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.16,'rgba(255,255,255,.85)');g.addColorStop(.42,'rgba(255,255,255,.24)');g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)}
+const glowMap=glowTexture();
+function nebulaTexture(){const c=document.createElement('canvas');c.width=c.height=512;const x=c.getContext('2d');const g=x.createRadialGradient(256,256,18,256,256,245);g.addColorStop(0,'rgba(210,188,255,.38)');g.addColorStop(.25,'rgba(120,95,245,.23)');g.addColorStop(.57,'rgba(42,114,212,.11)');g.addColorStop(1,'rgba(10,22,80,0)');x.fillStyle=g;x.fillRect(0,0,512,512);return new THREE.CanvasTexture(c)}
+const nebulaMap=nebulaTexture();
+const nebulaSprites=[];
+for(let i=0;i<12;i++){const a=i*2.39996,r=350+(i%5)*230;const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:nebulaMap,color:new THREE.Color().setHSL(.62+(i%4)*.045,.75,.67),transparent:true,opacity:.45,depthWrite:false,blending:THREE.AdditiveBlending}));sp.position.set(Math.cos(a)*r,Math.sin(a)*r*.65,-650-(i%4)*240);sp.scale.set(900+(i%3)*280,680+(i%4)*150,1);dream.add(sp);nebulaSprites.push(sp)}
+// Seeded random generator ensures a consistent galaxy each visit.
+let seed=73129;function rand(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}
+const galCount=3500,galPositions=new Float32Array(galCount*3),galColors=new Float32Array(galCount*3);const colA=new THREE.Color(0x92bbff),colB=new THREE.Color(0xe2aaff);
+for(let i=0;i<galCount;i++){let arm=i%4,dist=120+Math.pow(rand(),.67)*1700,angle=arm*Math.PI/2+dist*.0045+(rand()-.5)*.85;galPositions[i*3]=Math.cos(angle)*dist;galPositions[i*3+1]=Math.sin(angle)*dist*.65;galPositions[i*3+2]=-480+(rand()-.5)*400;const col=colA.clone().lerp(colB,rand());galColors[i*3]=col.r;galColors[i*3+1]=col.g;galColors[i*3+2]=col.b}
+const galGeo=new THREE.BufferGeometry();galGeo.setAttribute('position',new THREE.BufferAttribute(galPositions,3));galGeo.setAttribute('color',new THREE.BufferAttribute(galColors,3));const galaxy=new THREE.Points(galGeo,new THREE.PointsMaterial({size:4.4,vertexColors:true,transparent:true,opacity:.82,depthWrite:false,blending:THREE.AdditiveBlending}));dream.add(galaxy);
+const dust=[];for(let i=0;i<115;i++){const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:glowMap,color:i%4===0?0xffd9f9:0xb8d8ff,transparent:true,opacity:.25+rand()*.4,depthWrite:false,blending:THREE.AdditiveBlending}));sp.position.set((rand()-.5)*3000,(rand()-.5)*2300,-1000+rand()*1300);let size=4+rand()*12;sp.scale.set(size,size,1);dream.add(sp);dust.push(sp)}
+const meteorCount=4,meteors=[];for(let i=0;i<meteorCount;i++){const geo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3(-95,36,-12)]);const line=new THREE.Line(geo,new THREE.LineBasicMaterial({color:i%2?0xb4d5ff:0xffd0f4,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));dream.add(line);meteors.push({line,phase:i*3.7,speed:80+i*20})}
+// Step 8: procedural planet textures, with no external image assets.
+const planetThemes=[
+ {name:'蒼い海',base:'#133b85',mid:'#39b6cf',light:'#a9eaf0',ring:'#a7d9ff'},
+ {name:'紫の夢',base:'#32165d',mid:'#925bd3',light:'#f3b5f4',ring:'#dbb5ff'},
+ {name:'翡翠の森',base:'#103f43',mid:'#40aa8c',light:'#c6efb2',ring:'#a5f6d9'},
+ {name:'黄金の砂',base:'#683a22',mid:'#ce8747',light:'#ffe0a0',ring:'#ffdfa5'},
+ {name:'紅の炎',base:'#641c42',mid:'#dd5273',light:'#ffb3a0',ring:'#ff9fae'}
+];
+const planetTextures=planetThemes.map((theme,index)=>{
+ const c=document.createElement('canvas');c.width=512;c.height=256;const ctx=c.getContext('2d');
+ const grad=ctx.createLinearGradient(0,0,0,256);grad.addColorStop(0,theme.base);grad.addColorStop(.42,theme.mid);grad.addColorStop(.7,theme.base);grad.addColorStop(1,theme.light);ctx.fillStyle=grad;ctx.fillRect(0,0,512,256);
+ let seed=104729+index*997;const rnd=()=>{seed=(1664525*seed+1013904223)>>>0;return seed/4294967296};
+ for(let j=0;j<180;j++){const y=rnd()*256,h=1+rnd()*14;ctx.fillStyle=j%3===0?theme.light:theme.base;ctx.globalAlpha=.025+rnd()*.13;ctx.beginPath();ctx.ellipse(rnd()*512,y,40+rnd()*160,h,rnd()*.3,0,Math.PI*2);ctx.fill()}
+ for(let j=0;j<95;j++){ctx.globalAlpha=.035+rnd()*.15;ctx.fillStyle=theme.light;ctx.beginPath();ctx.ellipse(rnd()*512,rnd()*256,2+rnd()*28,1+rnd()*8,rnd()*6,0,Math.PI*2);ctx.fill()}
+ ctx.globalAlpha=1;const texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;texture.wrapS=THREE.RepeatWrapping;texture.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);return texture
+});
+const starGeo=new THREE.SphereGeometry(16,48,32),haloGeo=new THREE.SphereGeometry(20,24,16);
+const moonGeo=new THREE.SphereGeometry(3.6,16,12);
+const ringGeo=new THREE.RingGeometry(23,33,96);
+const planetExtras=new Map();
+function themeIndex(n){return Number.isInteger(n.planetTheme)?Math.max(0,Math.min(4,n.planetTheme)):(Math.abs(n.id)%planetThemes.length)}
+function decoratePlanet(obj,n){const idx=themeIndex(n),theme=planetThemes[idx];const extras={};
+ const atmosphere=new THREE.Sprite(new THREE.SpriteMaterial({map:glowMap,color:new THREE.Color(theme.mid),transparent:true,opacity:.27,depthWrite:false,blending:THREE.AdditiveBlending}));atmosphere.scale.set(72,72,1);obj.add(atmosphere);extras.atmosphere=atmosphere;
+ if(n.id%3!==1){const r=new THREE.Mesh(ringGeo,new THREE.MeshBasicMaterial({color:theme.ring,side:THREE.DoubleSide,transparent:true,opacity:.5,depthWrite:false}));r.rotation.set(.9,.22,.2);obj.add(r);extras.ring=r}
+ if(n.id%4!==0){const pivot=new THREE.Group();const moon=new THREE.Mesh(moonGeo,new THREE.MeshStandardMaterial({color:0xdde5ff,emissive:0x5566aa,emissiveIntensity:.5,roughness:.8}));moon.position.set(33,0,0);pivot.add(moon);obj.add(pivot);extras.moonPivot=pivot}
+ planetExtras.set(n.id,extras)
+}
+const group=new THREE.Group();scene.add(group);let meshes=new Map(),labels=new Map(),lines=[];
+function textSprite(text,active){const c=document.createElement('canvas');c.width=512;c.height=100;const x=c.getContext('2d');x.fillStyle='rgba(9,17,40,.82)';x.beginPath();x.roundRect(6,9,500,82,20);x.fill();x.strokeStyle=active?'#d6c5ff':'#718ec9';x.stroke();x.fillStyle='#f2f5ff';x.font=(active?'bold ':'')+'27px system-ui';x.textAlign='center';let s=text.length>22?text.slice(0,21)+'…':text;x.fillText(s,256,59);const texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,transparent:true,depthWrite:false}));sprite.scale.set(130,26,1);return sprite}
+let nodes=[],selected=null,tilt=25,orbitAngle=0,autoOrbit=false,moveMode=false,target=new THREE.Vector3(),radius=650,azimuth=0,elevation=25*Math.PI/180;let saved=null;try{saved=JSON.parse(localStorage.getItem('ideaGalaxy1')||'null')}catch(e){}if(saved&&Array.isArray(saved.nodes)){nodes=saved.nodes.filter(n=>Number.isFinite(n.x)&&Number.isFinite(n.y)&&typeof n.text==='string').map(n=>({...n,z:Number.isFinite(n.z)?n.z:Math.sin(n.id*2.17)*125}));selected=saved.selected;tilt=Math.max(0,Math.min(65,Number(saved.tilt??25)));elevation=tilt*Math.PI/180;azimuth=(Number(saved.orbitAngle)||0)*Math.PI/180;radius=Math.max(180,Math.min(2500,650/(Number(saved.zoom)||1)));}
+function save(){try{localStorage.setItem('ideaGalaxy1',JSON.stringify({nodes,selected,offset:{x:0,y:0},zoom:650/radius,tilt,orbitAngle:azimuth*180/Math.PI}))}catch(e){}}
+function pos(n){return new THREE.Vector3(n.x,-n.y,n.z||0)}
+function rebuild(){for(let obj of meshes.values()){group.remove(obj);obj.traverse(o=>{if(o.material){if(Array.isArray(o.material))o.material.forEach(m=>m.dispose());else o.material.dispose()}if(o.geometry&&o.geometry!==starGeo&&o.geometry!==haloGeo)o.geometry.dispose()})}for(let l of lines){group.remove(l);l.geometry.dispose();l.material.dispose()}meshes.clear();labels.clear();lines=[];planetExtras.clear();for(const n of nodes){const active=n.id===selected;const obj=new THREE.Group();obj.position.copy(pos(n));const glow=new THREE.Mesh(haloGeo,new THREE.MeshBasicMaterial({color:active?0xbfa4ff:0x658cfa,transparent:true,opacity:active?.15:.09,depthWrite:false}));glow.scale.setScalar(active?2.2:1.6);obj.add(glow);const star=new THREE.Mesh(starGeo,new THREE.MeshStandardMaterial({map:planetTextures[themeIndex(n)],emissive:active?0x44336c:0x121b36,emissiveIntensity:active?.5:.26,roughness:.78,metalness:.04}));star.userData.nodeId=n.id;obj.add(star);decoratePlanet(obj,n);const sprite=textSprite(n.text,active);sprite.position.y=-42;obj.add(sprite);labels.set(n.id,sprite);group.add(obj);meshes.set(n.id,obj)}for(const n of nodes){const p=nodes.find(v=>v.id===n.parent);if(!p)continue;const geometry=new THREE.BufferGeometry().setFromPoints([pos(p),pos(n)]);const line=new THREE.Line(geometry,new THREE.LineBasicMaterial({color:0x92aaff,transparent:true,opacity:.6}));group.add(line);lines.push(line)}let current=nodes.find(n=>n.id===selected);$('selected').textContent=current?current.text:'星を選んでください';$('add').disabled=!current;$('suggest').disabled=!current;$('stats').textContent=`✦ 星 ${nodes.length} 個 · REAL 3D`;$('tiltValue').textContent=Math.round(tilt)+'°';$('tilt').value=tilt;updatePlanetPicker();updateDiscoveryPanel();save()}
+// A selected planet can be recolored without changing its idea text or links.
+const planetPanel=document.createElement('section');planetPanel.className='panel planet-settings';planetPanel.innerHTML='<h2>🪐 惑星のデザイン</h2><label for="planetTheme">選択した惑星の色</label><select id="planetTheme" aria-label="惑星の色"><option value="0">蒼い海</option><option value="1">紫の夢</option><option value="2">翡翠の森</option><option value="3">黄金の砂</option><option value="4">紅の炎</option></select><p class="hint">星を選んで色を変えてみましょう。環と衛星は惑星ごとに異なります。</p>';
+document.querySelector('.layout aside').appendChild(planetPanel);
+const themeSelect=$('planetTheme');
+const help=document.createElement('p');help.className='hint';help.textContent='宇宙で惑星を選択してから、⚙ 設定を開き、ここで色を変更できます。設定を閉じると宇宙に戻れます。';planetPanel.insertBefore(help,planetPanel.children[1]);
+
+function updatePlanetPicker(){const n=nodes.find(n=>n.id===selected);themeSelect.disabled=!n;if(n)themeSelect.value=String(themeIndex(n))}
+themeSelect.addEventListener('change',()=>{const n=nodes.find(n=>n.id===selected);if(!n)return;n.planetTheme=Number(themeSelect.value);rebuild()});
+// Planet discoveries are stored separately, preserving the original ideaGalaxy1 save format.
+const discoveryKey='ideaGalaxy85Discoveries';
+let discovered={};try{const v=JSON.parse(localStorage.getItem(discoveryKey)||'{}');if(v&&typeof v==='object'&&!Array.isArray(v))discovered=v}catch(e){}
+const discoveryPanel=document.createElement('section');discoveryPanel.className='panel discovery-panel';discoveryPanel.id='discoveryPanel';
+discoveryPanel.innerHTML='<h2>🔎 惑星の未知を探索</h2><p class="hint">① 宇宙で惑星を選ぶ → ② 設定を開いて「探索する」 → ③ 発見をアイデアの星にできます。各惑星に3つの秘密が眠っています。</p><div class="discovery-count" id="discoveryCount"></div><div id="discoveryResults" aria-live="polite"></div>';
+planetPanel.parentElement.insertBefore(discoveryPanel,planetPanel);const landPanel=document.createElement('section');landPanel.className='panel';landPanel.innerHTML='<h2>🛬 惑星の地表を探索</h2><p class="hint">宇宙で惑星を選択し、地表に降り立ちます。光る結晶に近づくと秘密を発見できます。</p><button id="landFromSettings" type="button">選択した惑星に降り立つ</button>';discoveryPanel.insertAdjacentElement('afterend',landPanel);
+const discoveries=[
+ ['ひかりの遺跡','古い光の記録が、まだ誰も知らない未来を映し出しています。','光で記憶を伝える仕組み'],
+ ['共鳴する森','声に反応する植物が、離れた生命同士をつないでいます。','自然と対話できる場所'],
+ ['時間の湖','水面に過去と未来の風景が交互に映ります。','時間を超えて学ぶ体験'],
+ ['夢の図書館','まだ書かれていない物語が、星の光として並んでいます。','未来の物語を共有する図書館'],
+ ['重力の庭','重力の向きが変わる庭で、新しい移動方法が生まれています。','重力を活用した遊び'],
+ ['星屑の通信塔','小さな粒子が宇宙の遠くまで思いを届けています。','星を使ったコミュニケーション'],
+ ['透明な海','海の中で生き物たちの思考が色として輝いています。','感情が見える海の世界'],
+ ['空中都市の地図','雲の間に、まだ発見されていない街の道が浮かんでいます。','空に広がる新しい街'],
+ ['無音の音楽室','音のない空間に、心で感じる音楽が残されています。','耳を使わない音楽体験']
+];
+function discoveryId(n){return String(n.id)+':'+n.text}
+function discoveryChoices(n){let start=((n.id*7+n.text.length*3)%discoveries.length);return [0,1,2].map(i=>discoveries[(start+i*3)%discoveries.length])}
+function persistDiscoveries(){try{localStorage.setItem(discoveryKey,JSON.stringify(discovered))}catch(e){}}
+function updateDiscoveryPanel(){
+ const n=nodes.find(v=>v.id===selected),count=$('discoveryCount'),results=$('discoveryResults');if(!count||!results)return;
+ results.replaceChildren();
+ if(!n){count.textContent='惑星を選択してください';return}
+ const key=discoveryId(n),found=Array.isArray(discovered[key])?discovered[key]:[],items=discoveryChoices(n);
+ count.textContent=`「${n.text}」の発見：${found.length} / 3`;
+ items.forEach((d,i)=>{
+  const card=document.createElement('div');card.className='find-card';
+  const title=document.createElement('strong');title.textContent=found.includes(i)?'✨ '+d[0]:`🔒 未知の発見 ${i+1}`;card.append(title);
+  const desc=document.createElement('p');desc.textContent=found.includes(i)?d[1]:'まだ秘密が隠されています。探索すると手がかりが見つかります。';card.append(desc);
+  const btn=document.createElement('button');btn.type='button';btn.textContent=found.includes(i)?'この発見をアイデアにする ＋':'🔎 探索して発見する';
+  btn.onclick=()=>{
+   if(!found.includes(i)){found.push(i);discovered[key]=found;persistDiscoveries();updateDiscoveryPanel();return}
+   const original=nodes.find(v=>v.id===n.id);if(!original)return;
+   selected=original.id;$('childIdea').value=d[2]+' × '+original.text;add();
+   document.body.classList.remove('settings-open');const nav=$('spaceNav');nav.textContent='⚙ 設定を開く';nav.setAttribute('aria-expanded','false');
+  };
+  card.append(btn);results.append(card);
+ });
+}
+$('discoverQuick').addEventListener('click',()=>{
+ document.body.classList.add('settings-open');$('spaceNav').textContent='✕ 設定を閉じる';$('spaceNav').setAttribute('aria-expanded','true');
+ discoveryPanel.scrollIntoView({block:'center',behavior:'smooth'});
+});
+
+// Step 8.6: an explorable procedural 3D planetary surface. All objects are generated locally.
+const surfaceScene=new THREE.Scene();surfaceScene.background=new THREE.Color(0x0b1530);surfaceScene.fog=new THREE.FogExp2(0x101a39,.012);
+const surfaceCamera=new THREE.PerspectiveCamera(70,1,.1,650);
+surfaceScene.add(new THREE.HemisphereLight(0xa2d8ff,0x27304e,2.1));
+const surfaceSun=new THREE.DirectionalLight(0xffe2bc,2.5);surfaceSun.position.set(55,85,-25);surfaceScene.add(surfaceSun);
+const surfaceWorld=new THREE.Group();surfaceScene.add(surfaceWorld);
+const surfaceGround=new THREE.Mesh(new THREE.PlaneGeometry(850,850,42,42),new THREE.MeshStandardMaterial({color:0x243c60,roughness:1,metalness:.03}));surfaceGround.rotation.x=-Math.PI/2;surfaceGround.position.y=-.25;surfaceWorld.add(surfaceGround);
+const surfaceStars=new THREE.Group();surfaceScene.add(surfaceStars);
+for(let i=0;i<150;i++){const a=rand()*Math.PI*2,r=200+rand()*240,y=50+rand()*200;const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:glowMap,color:0xb9d5ff,transparent:true,opacity:.25+rand()*.65,depthWrite:false}));sp.position.set(Math.cos(a)*r,y,Math.sin(a)*r);const size=1+rand()*3;sp.scale.set(size,size,1);surfaceStars.add(sp)}
+const surfaceObjects=new THREE.Group();surfaceWorld.add(surfaceObjects);
+const landmarkPositions=[{x:0,z:-36},{x:38,z:-70},{x:-44,z:-96}];
+const landmarkMeshes=[];
+for(let i=0;i<3;i++){
+ const p=landmarkPositions[i],marker=new THREE.Group();marker.position.set(p.x,0,p.z);
+ const base=new THREE.Mesh(new THREE.CylinderGeometry(4.5,5.7,1.6,9),new THREE.MeshStandardMaterial({color:0x263e57,roughness:.9}));base.position.y=.5;marker.add(base);
+ const crystal=new THREE.Mesh(new THREE.OctahedronGeometry(5.2,1),new THREE.MeshStandardMaterial({color:[0x69f4e8,0xf6b5ff,0xffdb90][i],emissive:[0x2a8d87,0x8d4ea0,0x9a6b22][i],emissiveIntensity:1.7,metalness:.18,roughness:.24}));crystal.position.y=8;marker.add(crystal);
+ const halo=new THREE.Sprite(new THREE.SpriteMaterial({map:glowMap,color:[0x7dfff1,0xdba7ff,0xffd88e][i],transparent:true,opacity:.55,depthWrite:false,blending:THREE.AdditiveBlending}));halo.position.y=8;halo.scale.set(30,30,1);marker.add(halo);
+ surfaceObjects.add(marker);landmarkMeshes.push({marker,crystal});
+}
+// Rocks and luminous alien plants give the ground depth without external textures.
+const rockGeometry=new THREE.DodecahedronGeometry(1,0),plantGeometry=new THREE.ConeGeometry(1,1,5);
+for(let i=0;i<55;i++){
+ const x=(rand()-.5)*340,z=(rand()-.5)*340;if(Math.abs(x)<12&&z>-100&&z<15)continue;
+ const isPlant=i%4===0,mat=new THREE.MeshStandardMaterial({color:isPlant?0x6bd5bf:0x344c6c,emissive:isPlant?0x146b65:0x000000,emissiveIntensity:isPlant?.7:0,roughness:.86});
+ const obj=new THREE.Mesh(isPlant?plantGeometry:rockGeometry,mat);obj.position.set(x,isPlant?2:1,z);obj.scale.set(isPlant?2.5:2+rand()*4,isPlant?4+rand()*3:1+rand()*3,isPlant?2.5:2+rand()*4);obj.rotation.y=rand()*6.28;surfaceObjects.add(obj)
+}
+// Step 8.8: locally generated scenery, selected from the existing five planet themes.
+// Everything is geometry/material based: no paid API, no external textures.
+const biomeNames=['🌊 蒼い海と光の浜辺','🌸 紫の夢幻高原','🌲 翡翠の発光森林','🏜️ 黄金の砂丘','🌋 紅の火山地帯'];
+const biomePalette=[
+ {ground:0x527e8c,sky:0x071d40,fog:0x123e61,light:0x8deaff},
+ {ground:0x554778,sky:0x160e38,fog:0x30235a,light:0xf4a7ff},
+ {ground:0x2b6655,sky:0x061e25,fog:0x0e403c,light:0x70ffe2},
+ {ground:0x987044,sky:0x34200f,fog:0x77532e,light:0xffda88},
+ {ground:0x473448,sky:0x1d0a23,fog:0x482036,light:0xff7d71}
+];
+const scenery=new THREE.Group();surfaceWorld.add(scenery);
+// Step 8.9: free procedural living-nature animation (no API, no external assets).
+const natureAnimated=[];
+// Step 9.0: generated terrain, soft layered clouds and sparkling water.
+// All meshes and materials are created in the browser; no paid services or assets.
+const realisticNature=new THREE.Group();surfaceWorld.add(realisticNature);
+const realisticSky=new THREE.Group();surfaceScene.add(realisticSky);
+const realisticAnimated=[];
+let currentBiome=0;
+function terrainHeight(x,z,idx=currentBiome){
+ const distance=Math.hypot(x,z-15);
+ const path=Math.max(0,Math.min(1,(Math.abs(x)-11)/25));
+ const clearing=Math.max(0,Math.min(1,(distance-18)/30));
+ const wave=Math.sin(x*.031+idx*1.7)*Math.cos(z*.037-idx*.8)*2.8 +
+   Math.sin(x*.075+z*.046)*1.25 + Math.cos(z*.016-x*.021)*2.2;
+ let h=wave*path*clearing*(idx===3?1.7:idx===4?1.35:idx===0?.45:1);
+ for(const pt of landmarkPositions){const d=Math.hypot(x-pt.x,z-pt.z);h*=Math.max(0,Math.min(1,(d-9)/17))}
+ return h;
+}
+function updateTerrain(idx){
+ currentBiome=idx;
+ const geometry=surfaceGround.geometry,position=geometry.attributes.position;
+ // The ground mesh is rotated -90 degrees around X: local Y becomes world -Z.
+ for(let i=0;i<position.count;i++){
+   const x=position.getX(i),z=-position.getY(i);
+   position.setZ(i,terrainHeight(x,z,idx));
+ }
+ position.needsUpdate=true;geometry.computeVertexNormals();
+ surfaceGround.material.roughness=idx===0?.85:1;
+}
+function clearRealisticNature(){
+ realisticAnimated.length=0;
+ for(const group of [realisticNature,realisticSky]){
+  while(group.children.length){const object=group.children[0];group.remove(object);object.traverse(o=>{
+   if(o.geometry)o.geometry.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>m.dispose());
+  })}
+ }
+}
+function addRealisticNature(idx,random){
+ // Multi-layered translucent clouds create a soft volumetric impression.
+ const cloudColors=[0x9feaff,0xe9baff,0x8fe8d8,0xffdfaa,0xe7a0b8];
+ for(let i=0;i<13;i++){
+  const group=new THREE.Group();
+  const a=random()*Math.PI*2,r=80+random()*190;
+  group.position.set(Math.cos(a)*r,52+random()*46,Math.sin(a)*r);
+  const n=4+Math.floor(random()*4);
+  for(let j=0;j<n;j++){
+   const cloud=new THREE.Mesh(new THREE.SphereGeometry(1,10,7),new THREE.MeshLambertMaterial({color:cloudColors[idx],transparent:true,opacity:.10+random()*.10,depthWrite:false}));
+   cloud.position.set((j-n/2)*10,(random()-.5)*7,(random()-.5)*14);
+   cloud.scale.set(15+random()*12,4+random()*4,10+random()*10);
+   group.add(cloud);
+  }
+  realisticSky.add(group);realisticAnimated.push({cloud:group,phase:random()*6.28,baseX:group.position.x,baseZ:group.position.z});
+ }
+ if(idx===0){
+  // Highlights follow the animated water, approximating reflections without
+  // costly real-time reflection render targets.
+  for(const w of natureWaterSurfaces){
+   w.mesh.material.metalness=.42;
+   w.mesh.material.shininess=175;
+   const highlights=new THREE.Group();highlights.position.copy(w.mesh.position);
+   for(let j=0;j<15;j++){
+    const gleam=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({color:j%3?0xb8faff:0xffffff,transparent:true,opacity:.13+random()*.27,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending}));
+    const angle=random()*Math.PI*2,rad=Math.sqrt(random())*.82;
+    const width=w.mesh.geometry.parameters.width;
+    gleam.rotation.x=-Math.PI/2;
+    gleam.position.set(Math.cos(angle)*rad*width*.45,.35,Math.sin(angle)*rad*width*.45);
+    gleam.scale.set(1+random()*4,.12+random()*.45,1);
+    highlights.add(gleam);
+    realisticAnimated.push({gleam,phase:random()*6.28});
+   }
+   realisticNature.add(highlights);
+  }
+ }
+ realisticNature.visible=realisticSky.visible=natureEnabled;
+}
+function animateRealisticNature(t){
+ if(!natureEnabled)return;
+ for(const item of realisticAnimated){
+  if(item.cloud){item.cloud.position.x=item.baseX+Math.sin(t*.06+item.phase)*12;item.cloud.position.z=item.baseZ+Math.cos(t*.045+item.phase)*7}
+  if(item.gleam)item.gleam.material.opacity=.08+.34*(.5+.5*Math.sin(t*1.7+item.phase));
+ }
+}
+
+let natureEnabled=true;
+const natureFX=new THREE.Group();surfaceWorld.add(natureFX);
+const natureWater=new THREE.Group();surfaceWorld.add(natureWater);
+let natureWaterSurfaces=[];
+const natureFog=new THREE.Group();surfaceScene.add(natureFog);
+const natureFogMap=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d');const g=x.createRadialGradient(64,64,3,64,64,64);g.addColorStop(0,'rgba(255,255,255,.32)');g.addColorStop(.45,'rgba(255,255,255,.12)');g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)})();
+function clearNature(){natureAnimated.length=0;natureWaterSurfaces=[];for(const group of [natureFX,natureWater,natureFog]){while(group.children.length){const obj=group.children[0];group.remove(obj);obj.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>m.dispose())}})}}}
+function addNature(idx,random){
+ const waterMat=new THREE.MeshPhongMaterial({color:0x34b9da,emissive:0x073b67,emissiveIntensity:.26,shininess:125,transparent:true,opacity:.84,side:THREE.DoubleSide,depthWrite:false});
+ if(idx===0){for(let k=0;k<6;k++){let x=(random()-.5)*300,z=(random()-.5)*310;if(Math.abs(x)<40&&z>-115&&z<30){x+=90;z-=65}const radius=19+random()*24;const geometry=new THREE.PlaneGeometry(radius*2,radius*2,22,22);geometry.rotateX(-Math.PI/2);const mesh=new THREE.Mesh(geometry,waterMat.clone());mesh.position.set(x,.22,z);natureWater.add(mesh);const a=geometry.attributes.position;const base=new Float32Array(a.array);natureWaterSurfaces.push({mesh,base,phase:random()*7});
+ const foam=new THREE.Mesh(new THREE.RingGeometry(radius*.94,radius,64),new THREE.MeshBasicMaterial({color:0x9ffaff,transparent:true,opacity:.22,side:THREE.DoubleSide,depthWrite:false}));foam.rotation.x=-Math.PI/2;foam.position.set(x,.15,z);natureWater.add(foam)}}
+ if(idx===2){for(let i=0;i<65;i++){const x=(random()-.5)*315,z=(random()-.5)*315;if(Math.abs(x)<17&&z>-115&&z<25)continue;const height=7+random()*11;const tree=new THREE.Group();tree.position.set(x,0,z);const trunk=new THREE.Mesh(new THREE.CylinderGeometry(.7,1.3,height,6),new THREE.MeshStandardMaterial({color:0x254943,roughness:1}));trunk.position.y=height/2;tree.add(trunk);const crown=new THREE.Mesh(new THREE.IcosahedronGeometry(4+random()*2,1),new THREE.MeshStandardMaterial({color:i%3?0x41bd99:0x83f7d5,emissive:0x0b5349,emissiveIntensity:.32,roughness:.9}));crown.position.y=height+2;tree.add(crown);natureFX.add(tree);natureAnimated.push({tree,phase:random()*6.28,amplitude:.025+random()*.025})}}
+ // Soft layered mist is optional and intentionally sparse for low-end devices.
+ for(let i=0;i<15;i++){const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:natureFogMap,color:idx===3?0xffc88a:idx===4?0xa978ae:0xa9dff2,transparent:true,opacity:.13,depthWrite:false,depthTest:true}));sp.position.set((random()-.5)*260,3+random()*13,(random()-.5)*260);sp.scale.set(45+random()*65,15+random()*24,1);natureFog.add(sp);natureAnimated.push({mist:sp,phase:random()*6.28,baseX:sp.position.x})}
+ for(let i=0;i<45;i++){const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:glowMap,color:idx===4?0xffad6c:idx===3?0xffe4a5:0x9bf9e8,transparent:true,opacity:.3,depthWrite:false,blending:THREE.AdditiveBlending}));sp.position.set((random()-.5)*200,2+random()*25,(random()-.5)*200);const size=.45+random()*1.1;sp.scale.set(size,size,1);natureFX.add(sp);natureAnimated.push({spark:sp,phase:random()*6.28,baseY:sp.position.y})}
+ natureFX.visible=natureWater.visible=natureFog.visible=natureEnabled;
+}
+function animateNature(t){if(!natureEnabled)return;
+ for(const w of natureWaterSurfaces){const a=w.mesh.geometry.attributes.position;for(let j=0;j<a.count;j++){const x=w.base[j*3],z=w.base[j*3+2];a.setY(j,Math.sin(x*.17+t*1.4+w.phase)*.42+Math.cos(z*.21+t*1.1+w.phase)*.28)}a.needsUpdate=true;w.mesh.geometry.computeVertexNormals()}
+ for(const a of natureAnimated){if(a.tree){a.tree.rotation.z=Math.sin(t*.9+a.phase)*a.amplitude;a.tree.rotation.x=Math.cos(t*.7+a.phase)*a.amplitude*.65}if(a.mist){a.mist.position.x=a.baseX+Math.sin(t*.18+a.phase)*9;a.mist.material.opacity=.09+.04*Math.sin(t*.3+a.phase)}if(a.spark){a.spark.position.y=a.baseY+Math.sin(t*.8+a.phase)*.8;a.spark.material.opacity=.18+.2*(.5+.5*Math.sin(t*1.7+a.phase))}}}
+// Surface-only visual-effects switch; saved separately from the idea graph.
+try{natureEnabled=localStorage.getItem('ideaGalaxyNatureFX')!=='off'}catch(e){}
+const natureButton=document.createElement('button');natureButton.type='button';natureButton.id='natureToggle';natureButton.textContent='🌿 自然表現：'+(natureEnabled?'ON':'OFF');natureButton.style.cssText='position:absolute;top:12px;right:12px;z-index:14;display:none;pointer-events:auto;background:#173d49;color:#e5ffff;border:1px solid #70d5d0;border-radius:10px;padding:9px;font-size:12px;cursor:pointer';$('surfaceHUD').appendChild(natureButton);
+natureButton.addEventListener('click',()=>{natureEnabled=!natureEnabled;natureFX.visible=natureWater.visible=natureFog.visible=realisticNature.visible=realisticSky.visible=natureEnabled;natureButton.textContent='🌿 自然表現：'+(natureEnabled?'ON':'OFF');try{localStorage.setItem('ideaGalaxyNatureFX',natureEnabled?'on':'off')}catch(e){}});
+
+const sceneryGeometry={cone:new THREE.ConeGeometry(1,1,7),sphere:new THREE.IcosahedronGeometry(1,1),rock:new THREE.DodecahedronGeometry(1,0)};
+function clearScenery(){while(scenery.children.length){const o=scenery.children[0];scenery.remove(o);o.traverse(v=>{if(v.geometry&&!Object.values(sceneryGeometry).includes(v.geometry))v.geometry.dispose();if(v.material){const a=Array.isArray(v.material)?v.material:[v.material];a.forEach(m=>m.dispose())}})}}
+function sceneryMesh(geo,color,x,y,z,sx,sy,sz,glow=0){const m=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({color,roughness:.85,metalness:.05,emissive:color,emissiveIntensity:glow}));m.position.set(x,y,z);m.scale.set(sx,sy,sz);scenery.add(m);return m}
+function buildBiome(idx){clearScenery();clearNature();clearRealisticNature();updateTerrain(idx);const p=biomePalette[idx];surfaceGround.material.color.set(p.ground);surfaceScene.background.set(p.sky);surfaceScene.fog.color.set(p.fog);surfaceSun.color.set(p.light);
+ // A seeded generator makes the landscape stable when revisiting a planet.
+ let seed=((surfaceNodeId||1)*7919+idx*104729)>>>0;const random=()=>{seed=(1664525*seed+1013904223)>>>0;return seed/4294967296};
+ // Distant mountains are deliberately outside the walkable area.
+ for(let i=0;i<36;i++){const a=i/36*Math.PI*2,r=235+random()*90,h=32+random()*110;const mountain=sceneryMesh(sceneryGeometry.cone,idx===3?0xb89157:idx===4?0x5c3446:0x394d72,Math.cos(a)*r,h/2-1,Math.sin(a)*r,20+random()*20,h,20+random()*20);mountain.rotation.y=random()*6.28}
+ if(idx===0){ // ocean, island pools and glowing shoreline
+   for(let i=0;i<7;i++){const x=(random()-.5)*300,z=(random()-.5)*310;if(Math.abs(x)<32&&z>-110&&z<25)continue;
+     const water=new THREE.Mesh(new THREE.CircleGeometry(18+random()*22,48),new THREE.MeshStandardMaterial({color:0x2b9ec5,emissive:0x08658a,emissiveIntensity:.42,transparent:true,opacity:.78,metalness:.25,roughness:.2,side:THREE.DoubleSide}));water.rotation.x=-Math.PI/2;water.position.set(x,.04,z);scenery.add(water)}
+ }else if(idx===1){ // crystal gardens
+   for(let i=0;i<80;i++){const x=(random()-.5)*340,z=(random()-.5)*340;if(Math.abs(x)<15&&z>-115&&z<25)continue;
+     const c=sceneryMesh(sceneryGeometry.cone,i%3===0?0xffb4ed:0x9b7bed,x,2+random()*4,z,1.5+random()*2,6+random()*10,1.5+random()*2,.45);c.rotation.z=(random()-.5)*.25}
+ }else if(idx===2){ // forests: trunks and luminous canopies
+   for(let i=0;i<100;i++){const x=(random()-.5)*330,z=(random()-.5)*330;if(Math.abs(x)<16&&z>-115&&z<25)continue;const h=10+random()*16;
+     sceneryMesh(sceneryGeometry.cone,0x284b49,x,h*.45,z,1.5,h*.9,1.5);
+     sceneryMesh(sceneryGeometry.sphere,i%3===0?0x63f0b4:0x328f84,x,h,z,5+random()*3,6+random()*3,5+random()*3,.18)}
+ }else if(idx===3){ // dunes with gentle rolling humps and sandstone pillars
+   for(let i=0;i<42;i++){const x=(random()-.5)*340,z=(random()-.5)*340;if(Math.abs(x)<16&&z>-115&&z<25)continue;
+     sceneryMesh(sceneryGeometry.sphere,0xc79c61,x,-1.3,z,10+random()*14,2.5+random()*3,7+random()*10);
+     if(i%5===0)sceneryMesh(sceneryGeometry.rock,0x9d7048,x,5,z,3,9,3)}
+ }else{ // volcanic spires, glowing lava pools
+   for(let i=0;i<44;i++){const x=(random()-.5)*340,z=(random()-.5)*340;if(Math.abs(x)<18&&z>-115&&z<25)continue;
+     const h=8+random()*22;sceneryMesh(sceneryGeometry.cone,0x332b3b,x,h/2,z,3+random()*4,h,3+random()*4);
+     if(i%4===0){const lava=new THREE.Mesh(new THREE.CircleGeometry(5+random()*8,24),new THREE.MeshBasicMaterial({color:0xff6236,transparent:true,opacity:.7,side:THREE.DoubleSide}));lava.rotation.x=-Math.PI/2;lava.position.set(x,.07,z);scenery.add(lava)}}
+ }
+ addNature(idx,random);addRealisticNature(idx,random);$('biomeName').textContent=biomeNames[idx]+' · 立体地形・雲・水面の輝き（無料）';
+}
+let surfaceMode=false,surfaceNodeId=null,surfaceYaw=0,surfaceX=0,surfaceZ=15,surfaceLast=0;
+const surfaceHUD=$('surfaceHUD'),surfaceFind=$('surfaceFind'),surfaceDiscover=$('surfaceDiscover');
+function surfaceNode(){return nodes.find(n=>n.id===surfaceNodeId)}
+function surfaceTheme(){return planetThemes[themeIndex(surfaceNode()||{id:1})]}
+function updateSurfaceView(){surfaceCamera.position.set(surfaceX,5.2+terrainHeight(surfaceX,surfaceZ),surfaceZ);surfaceCamera.rotation.set(0,surfaceYaw,0,'YXZ');surfaceCamera.lookAt(surfaceX+Math.sin(surfaceYaw)*30,4.4,surfaceZ-Math.cos(surfaceYaw)*30)}
+function nearestLandmark(){let best=-1,dist=Infinity;landmarkPositions.forEach((p,i)=>{let d=Math.hypot(surfaceX-p.x,surfaceZ-p.z);if(d<dist){best=i;dist=d}});return {index:best,distance:dist}}
+function updateSurfaceHUD(){const n=surfaceNode();if(!n)return;const near=nearestLandmark(),items=discoveryChoices(n),i=near.index,d=items[i],found=(discovered[discoveryId(n)]||[]).includes(i);
+ $('surfaceTitle').textContent='🪐 '+n.text+' — 地表探検';$('surfaceHint').textContent='W / ↑：前進　S / ↓：後退　A・D / ← →：方向転換。光る結晶に近づこう。';
+ $('surfacePlace').textContent=near.distance<15?(found?'✨ 発見済み：':'🔎 未知の発見：')+d[0]:'✨ 光る結晶を探そう';
+ $('surfaceDescription').textContent=near.distance<15?(found?d[1]:'結晶のそばに到着！秘密を調べられます。'):`最も近い結晶まで約${Math.round(near.distance)}m。前後に進み、向きを変えて探索してください。`;
+ surfaceDiscover.disabled=near.distance>=15;surfaceDiscover.textContent=found?'この発見をアイデアにする ＋':'✨ 秘密を発見する';
+}
+function enterSurface(){const n=nodes.find(v=>v.id===selected);if(!n){alert('先に宇宙で惑星を選択してください。');return}
+ surfaceMode=true;surfaceNodeId=n.id;surfaceX=0;surfaceZ=15;surfaceYaw=0;
+ buildBiome(themeIndex(n));
+ document.body.classList.remove('settings-open');$('spaceNav').textContent='⚙ 設定を開く';$('spaceNav').setAttribute('aria-expanded','false');document.body.classList.add('surface-active');surfaceHUD.classList.add('active');natureButton.style.display='block';updateSurfaceView();updateSurfaceHUD();
+}
+function exitSurface(){surfaceMode=false;document.body.classList.remove('surface-active');surfaceHUD.classList.remove('active');natureButton.style.display='none';surfaceNodeId=null;}
+$('landFromSettings').onclick=enterSurface;$('landQuick').onclick=enterSurface;$('surfaceReturn').onclick=exitSurface;
+function surfaceStep(action){if(!surfaceMode)return;if(action==='left')surfaceYaw+=Math.PI/10;else if(action==='right')surfaceYaw-=Math.PI/10;else{const sign=action==='forward'?1:-1;surfaceX=Math.max(-170,Math.min(170,surfaceX+Math.sin(surfaceYaw)*sign*8));surfaceZ=Math.max(-170,Math.min(170,surfaceZ-Math.cos(surfaceYaw)*sign*8))}updateSurfaceView();updateSurfaceHUD()}
+surfaceHUD.querySelectorAll('[data-step]').forEach(b=>b.onclick=()=>surfaceStep(b.dataset.step));
+document.addEventListener('keydown',e=>{if(!surfaceMode||e.target instanceof HTMLInputElement||e.target instanceof HTMLTextAreaElement)return;const key=e.key.toLowerCase(),action=({'w':'forward','arrowup':'forward','s':'back','arrowdown':'back','a':'left','arrowleft':'left','d':'right','arrowright':'right'})[key];if(action){e.preventDefault();surfaceStep(action)}if(key==='escape')exitSurface()});
+surfaceDiscover.onclick=()=>{const n=surfaceNode();if(!n)return;const near=nearestLandmark();if(near.distance>=15)return;const i=near.index,d=discoveryChoices(n)[i],key=discoveryId(n),found=Array.isArray(discovered[key])?discovered[key]:[];
+ if(!found.includes(i)){found.push(i);discovered[key]=found;persistDiscoveries();updateDiscoveryPanel();updateSurfaceHUD();return}
+ selected=n.id;$('childIdea').value=d[2]+' × '+n.text;add();exitSurface();
+};
+
+const lenses=[['逆転','当たり前を逆にしたら？',t=>`「${t}」を逆転させる仕組み`],['融合','ゲームと組み合わせたら？',t=>`ゲームで育てる${t}`],['未来','100年後なら？',t=>`100年後の${t}`],['世界','国境がなくなったら？',t=>`世界をつなぐ${t}`],['感覚','五感で体験できたら？',t=>`五感で探索する${t}`],['AI','AIと共同で作ったら？',t=>`AIと一緒に進化する${t}`],['共有','みんなで作れるなら？',t=>`みんなで創造する${t}`],['制約','電気が使えなかったら？',t=>`電気を使わない${t}`],['自由','制約がなかったら？',t=>`自由に変化する${t}`]];let round=0;
+function suggest(){let n=nodes.find(v=>v.id===selected),box=$('suggestions');box.replaceChildren();if(!n)return;let base=(round++*3)%lenses.length;for(let i=0;i<3;i++){let [tag,q,fn]=lenses[(base+i)%lenses.length],idea=fn(n.text),card=document.createElement('div');card.className='suggestion';let strong=document.createElement('strong');strong.textContent='✦ '+idea;let p=document.createElement('p');p.textContent=tag+'の視点：'+q;let b=document.createElement('button');b.textContent='このアイデアを星にする ＋';b.onclick=()=>{selected=n.id;$('childIdea').value=idea;add();b.disabled=true;b.textContent='追加しました ✓'};card.append(strong,p,b);box.append(card)}}
+function create(){const text=$('rootIdea').value.trim();if(!text)return alert('アイデアを入力してください');if(nodes.length&&!confirm('現在の宇宙を新しく作り直しますか？'))return;nodes=[{id:1,parent:null,text,x:0,y:0,z:0}];selected=1;target.set(0,0,0);radius=650;$('suggestions').replaceChildren();rebuild()}
+function add(){const text=$('childIdea').value.trim(),p=nodes.find(n=>n.id===selected);if(!text||!p)return alert('星を選び、アイデアを入力してください');const count=nodes.filter(n=>n.parent===p.id).length,a=count*2.39996,r=175+Math.floor(count/6)*75,id=Math.max(0,...nodes.map(n=>n.id))+1;nodes.push({id,parent:p.id,text,x:p.x+Math.cos(a)*r,y:p.y+Math.sin(a)*r,z:(p.z||0)+Math.sin(count*1.8+id)*100});selected=id;$('childIdea').value='';rebuild()}
+$('create').onclick=create;$('add').onclick=add;$('suggest').onclick=suggest;$('childIdea').onkeydown=e=>{if(e.key==='Enter')add()};$('reset').onclick=()=>{if(confirm('すべての星を削除しますか？')){nodes=[];selected=null;discovered={};persistDiscoveries();$('suggestions').replaceChildren();rebuild()}};
+function zoom(mult){radius=Math.max(110,Math.min(3200,radius*mult))}$('zoomIn').onclick=()=>zoom(.8);$('zoomOut').onclick=()=>zoom(1.25);$('centerView').onclick=()=>{target.set(0,0,0);radius=650;azimuth=0;elevation=25*Math.PI/180;tilt=25;rebuild()};$('tilt').oninput=e=>{tilt=Number(e.target.value);elevation=tilt*Math.PI/180;$('tiltValue').textContent=tilt+'°';save()};$('autoOrbit').onclick=()=>{autoOrbit=!autoOrbit;$('autoOrbit').textContent='自動カメラ：'+(autoOrbit?'ON':'OFF')};$('moveMode').onclick=()=>{moveMode=!moveMode;$('moveMode').textContent='星を動かす：'+(moveMode?'ON':'OFF')};
+const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();function hit(e){const r=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height*2-1));raycaster.setFromCamera(pointer,camera);const targets=[...meshes.values()].map(g=>g.children[1]);const h=raycaster.intersectObjects(targets,false);return h.length?h[0].object.userData.nodeId:null}
+let drag=null;const canvas=renderer.domElement;canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,initialX:e.clientX,initialY:e.clientY,button:e.button,id:hit(e)};canvas.setPointerCapture(e.pointerId)});canvas.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;if(moveMode&&drag.id!==null){const n=nodes.find(n=>n.id===drag.id);if(n){n.x+=dx*.75;n.y-=dy*.75;rebuild()}return}if(drag.button===2){const right=new THREE.Vector3().setFromMatrixColumn(camera.matrix,0);const up=new THREE.Vector3().setFromMatrixColumn(camera.matrix,1);target.addScaledVector(right,-dx*radius/900).addScaledVector(up,dy*radius/900)}else{azimuth-=dx*.006;elevation=Math.max(-1.25,Math.min(1.25,elevation+dy*.006));tilt=Math.round(Math.abs(elevation)*180/Math.PI);$('tiltValue').textContent=tilt+'°';$('tilt').value=Math.min(65,tilt)}});canvas.addEventListener('pointerup',e=>{if(drag&&Math.hypot(e.clientX-drag.initialX,e.clientY-drag.initialY)<6&&drag.id!==null){selected=drag.id;$('suggestions').replaceChildren();rebuild()}drag=null;save()});canvas.addEventListener('contextmenu',e=>e.preventDefault());canvas.addEventListener('wheel',e=>{e.preventDefault();zoom(e.deltaY>0?1.12:.89);save()},{passive:false});
+// Visual effects are optional to keep the app responsive on slower devices.
+let effectsOn=true;const effectsButton=document.createElement('button');effectsButton.id='effectsToggle';effectsButton.className='secondary';effectsButton.textContent='幻想エフェクト：ON';$('moveMode').insertAdjacentElement('afterend',effectsButton);effectsButton.onclick=()=>{effectsOn=!effectsOn;dream.visible=effectsOn;effectsButton.textContent='幻想エフェクト：'+(effectsOn?'ON':'OFF')};
+function resize(){const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();surfaceCamera.aspect=w/h;surfaceCamera.updateProjectionMatrix()}new ResizeObserver(resize).observe(stage);resize();rebuild();status.hidden=true;const reduce=window.matchMedia('(prefers-reduced-motion:reduce)');let last=performance.now();function animate(now){requestAnimationFrame(animate);const dt=Math.min(.05,(now-last)/1000);last=now;if(autoOrbit&&!reduce.matches)azimuth+=dt*.22;camera.position.set(target.x+radius*Math.cos(elevation)*Math.sin(azimuth),target.y+radius*Math.sin(elevation),target.z+radius*Math.cos(elevation)*Math.cos(azimuth));camera.lookAt(target);for(const [id,obj] of meshes){const h=obj.children[0];if(!reduce.matches){h.scale.setScalar((id===selected?2.2:1.6)*(1+.08*Math.sin(now*.0015+id)));obj.children[1].rotation.y+=dt*(.12+(id%5)*.035);const extra=planetExtras.get(id);if(extra?.moonPivot)extra.moonPivot.rotation.y+=dt*(.25+(id%4)*.07);if(extra?.ring)extra.ring.rotation.z+=dt*.025}}ring.rotation.z+=reduce.matches?0:dt*.01;
+if(effectsOn&&!reduce.matches){galaxy.rotation.z+=dt*.002;for(let i=0;i<dust.length;i++)dust[i].material.opacity=.27+.23*Math.sin(now*.0012+i*1.3);for(const m of meteors){const cycle=((now*.001+m.phase)%13);if(cycle<1.7){const t=cycle/1.7;m.line.position.set(1050-t*1800,650-t*650,-150-m.phase*40);m.line.material.opacity=Math.sin(Math.PI*t)*.75}else m.line.material.opacity=0}}else{for(const m of meteors)m.line.material.opacity=0}
+if(surfaceMode){for(let i=0;i<landmarkMeshes.length;i++){const c=landmarkMeshes[i].crystal;c.rotation.y+=dt*.5;c.position.y=8+Math.sin(now*.0015+i)*.7}if(!reduce.matches){animateNature(now*.001);animateRealisticNature(now*.001)}renderer.render(surfaceScene,surfaceCamera)}else renderer.render(scene,camera)}requestAnimationFrame(animate);
+</script></body></html>

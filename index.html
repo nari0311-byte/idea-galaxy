@@ -37,7 +37,7 @@ body.settings-open #settingsShade{display:block}
 #surfaceFind button:disabled{opacity:.6}
 body.surface-active .tag,body.surface-active .toolbar,body.surface-active .bottom,body.surface-active .depth,body.surface-active #discoverQuick,body.surface-active #landQuick{display:none}
 @media(max-width:700px){#landQuick{top:99px}#surfaceFind{bottom:172px;width:min(240px,64vw)}.surface-top{max-width:calc(100% - 75px)}.surface-controls{bottom:14px;left:15px;transform:none}}
-</style></head><body><header><h1>✦ Idea Galaxy <small>8.9 · LIVING NATURE</small></h1><p>揺れる木々、波打つ水面、漂う霧と光の粒子。生きている惑星を探索しよう。</p></header><div class="layout"><aside><h2 class="settings-heading">⚙ 設定</h2><p class="hint">① アイデアを入力して宇宙を作成。② 星をクリックして選択。③ 新しい星を追加したり、発想アシスタントを使ったりできます。</p><label for="rootIdea">最初のアイデア</label><input type="text" id="rootIdea" value="未来の学校" placeholder="例：未来の学校"><button id="create">宇宙を作る</button><label>選択中の星</label><div class="selected" id="selected">まだ星がありません</div><label for="childIdea">この星から広げるアイデア</label><input type="text" id="childIdea" placeholder="例：教室のない学校"><button id="add">新しい星を追加</button><section class="panel"><h2>✧ 発想アシスタント</h2><p class="hint">選んだ星から3つの発想を提案します（ルールベース・AI APIなし）。</p><button id="suggest">アイデアを3つ提案</button><div id="suggestions" aria-live="polite"></div></section><button id="reset" class="secondary">すべてリセット</button><p class="hint">ドラッグ：視点回転／右ドラッグ：平行移動／ホイール：ズーム／星をクリック：選択。星のドラッグ移動は「星を動かす」モードで行えます。</p><button id="moveMode" class="secondary">星を動かす：OFF</button><p class="hint">以前のバージョンと同じ保存キーを使用します。ブラウザの保存データを消すと失われる場合があります。</p></aside><main class="stage" id="stage"><div id="viewport"></div><div class="tag">✧ 星雲・銀河・流れ星の中でアイデアを探そう</div><button id="discoverQuick" type="button">🔎 惑星を探索</button><button id="landQuick" type="button">🛬 惑星に降り立つ</button><div id="surfaceHUD" aria-live="polite"><div class="surface-top"><strong id="surfaceTitle">惑星探検</strong><p id="biomeName" style="color:#9ce9dc;font-weight:700">地形を生成中…</p><p id="surfaceHint">矢印キー・WASDで歩き、← →で向きを変えられます。</p><button id="surfaceReturn" type="button">🚀 宇宙へ戻る</button></div><div id="surfaceFind"><strong id="surfacePlace">未知の地表</strong><p id="surfaceDescription">光る目印を探して近づこう。</p><button id="surfaceDiscover" type="button" disabled>発見する</button></div><div class="surface-controls"><button class="up" data-step="forward" aria-label="前進">↑</button><button class="left" data-step="left" aria-label="左を向く">↶</button><button class="down" data-step="back" aria-label="後退">↓</button><button class="right" data-step="right" aria-label="右を向く">↷</button></div></div><div class="toolbar"><button id="zoomIn" title="拡大" aria-label="拡大">＋</button><button id="zoomOut" title="縮小" aria-label="縮小">−</button><button id="centerView" title="中心に戻す" aria-label="中心に戻す">⌖</button></div><div class="bottom" id="stats">✦ 星 0 個 · 3D</div><div class="depth"><label for="tilt">視点の傾き <span id="tiltValue">25°</span></label><input id="tilt" type="range" min="0" max="65" value="25"><div class="pill">カメラの高さを調整</div><button id="autoOrbit">自動カメラ：OFF</button></div><div class="status" id="status">3D宇宙を読み込み中…</div></main></div>
+</style><style id="language-style">#languagePicker{position:fixed;z-index:10020;right:14px;top:12px;display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #8dcaf277;border-radius:12px;background:#101b32e8;color:white;font:13px system-ui,sans-serif;box-shadow:0 3px 18px #0007}#languagePicker select{background:#203654;color:white;border:1px solid #91c8ec88;border-radius:7px;padding:5px;font:inherit}body{padding-top:0}header{padding-right:170px!important}@media(max-width:640px){#languagePicker{top:8px;right:8px;padding:5px}header{padding-top:48px!important;padding-right:12px!important}}</style></head><body><header><h1>✦ Idea Galaxy <small>9.3 · UNDO EDITION</small></h1><p>揺れる木々、波打つ水面、漂う霧と光の粒子。生きている惑星を探索しよう。</p></header><div class="layout"><aside><h2 class="settings-heading">⚙ 設定</h2><p class="hint">① アイデアを入力して宇宙を作成。② 星をクリックして選択。③ 新しい星を追加したり、発想アシスタントを使ったりできます。</p><label for="rootIdea">最初のアイデア</label><input type="text" id="rootIdea" value="未来の学校" placeholder="例：未来の学校"><button id="create">宇宙を作る</button><label>選択中の星</label><div class="selected" id="selected">まだ星がありません</div><label for="childIdea">この星から広げるアイデア</label><input type="text" id="childIdea" placeholder="例：教室のない学校"><button id="add">新しい星を追加</button><section class="panel"><h2>✧ 発想アシスタント</h2><p class="hint">選んだ星から3つの発想を提案します（ルールベース・AI APIなし）。</p><button id="suggest">アイデアを3つ提案</button><div id="suggestions" aria-live="polite"></div></section><button id="reset" class="secondary">すべてリセット</button><p class="hint">ドラッグ：視点回転／右ドラッグ：平行移動／ホイール：ズーム／星をクリック：選択。星のドラッグ移動は「星を動かす」モードで行えます。</p><button id="moveMode" class="secondary">星を動かす：OFF</button><p class="hint">以前のバージョンと同じ保存キーを使用します。ブラウザの保存データを消すと失われる場合があります。</p></aside><main class="stage" id="stage"><div id="viewport"></div><div class="tag">✧ 星雲・銀河・流れ星の中でアイデアを探そう</div><button id="discoverQuick" type="button">🔎 惑星を探索</button><button id="landQuick" type="button">🛬 惑星に降り立つ</button><div id="surfaceHUD" aria-live="polite"><div class="surface-top"><strong id="surfaceTitle">惑星探検</strong><p id="biomeName" style="color:#9ce9dc;font-weight:700">地形を生成中…</p><p id="surfaceHint">矢印キー・WASDで歩き、← →で向きを変えられます。</p><button id="surfaceReturn" type="button">🚀 宇宙へ戻る</button></div><div id="surfaceFind"><strong id="surfacePlace">未知の地表</strong><p id="surfaceDescription">光る目印を探して近づこう。</p><button id="surfaceDiscover" type="button" disabled>発見する</button></div><div class="surface-controls"><button class="up" data-step="forward" aria-label="前進">↑</button><button class="left" data-step="left" aria-label="左を向く">↶</button><button class="down" data-step="back" aria-label="後退">↓</button><button class="right" data-step="right" aria-label="右を向く">↷</button></div></div><div class="toolbar"><button id="zoomIn" title="拡大" aria-label="拡大">＋</button><button id="zoomOut" title="縮小" aria-label="縮小">−</button><button id="centerView" title="中心に戻す" aria-label="中心に戻す">⌖</button></div><div class="bottom" id="stats">✦ 星 0 個 · 3D</div><div class="depth"><label for="tilt">視点の傾き <span id="tiltValue">25°</span></label><input id="tilt" type="range" min="0" max="65" value="25"><div class="pill">カメラの高さを調整</div><button id="autoOrbit">自動カメラ：OFF</button></div><div class="status" id="status">3D宇宙を読み込み中…</div></main></div>
 <div id="settingsShade"></div><button id="spaceNav" type="button" aria-expanded="false">⚙ 設定を開く</button>
 <script>
 (function(){
@@ -369,6 +369,71 @@ const lenses=[['逆転','当たり前を逆にしたら？',t=>`「${t}」を逆
 function suggest(){let n=nodes.find(v=>v.id===selected),box=$('suggestions');box.replaceChildren();if(!n)return;let base=(round++*3)%lenses.length;for(let i=0;i<3;i++){let [tag,q,fn]=lenses[(base+i)%lenses.length],idea=fn(n.text),card=document.createElement('div');card.className='suggestion';let strong=document.createElement('strong');strong.textContent='✦ '+idea;let p=document.createElement('p');p.textContent=tag+'の視点：'+q;let b=document.createElement('button');b.textContent='このアイデアを星にする ＋';b.onclick=()=>{selected=n.id;$('childIdea').value=idea;add();b.disabled=true;b.textContent='追加しました ✓'};card.append(strong,p,b);box.append(card)}}
 function create(){const text=$('rootIdea').value.trim();if(!text)return alert('アイデアを入力してください');if(nodes.length&&!confirm('現在の宇宙を新しく作り直しますか？'))return;nodes=[{id:1,parent:null,text,x:0,y:0,z:0}];selected=1;target.set(0,0,0);radius=650;$('suggestions').replaceChildren();rebuild()}
 function add(){const text=$('childIdea').value.trim(),p=nodes.find(n=>n.id===selected);if(!text||!p)return alert('星を選び、アイデアを入力してください');const count=nodes.filter(n=>n.parent===p.id).length,a=count*2.39996,r=175+Math.floor(count/6)*75,id=Math.max(0,...nodes.map(n=>n.id))+1;nodes.push({id,parent:p.id,text,x:p.x+Math.cos(a)*r,y:p.y+Math.sin(a)*r,z:(p.z||0)+Math.sin(count*1.8+id)*100});selected=id;$('childIdea').value='';rebuild()}
+// Undo history for destructive star deletion (up to 20 actions in this tab).
+const deletionHistory=[];
+const undoStarButton=document.createElement('button');
+undoStarButton.id='undoDelete';
+undoStarButton.type='button';
+undoStarButton.className='secondary';
+undoStarButton.textContent='↶ 削除を取り消す';
+undoStarButton.title='直前の星の削除を元に戻す (Ctrl+Z)';
+undoStarButton.style.cssText='margin-top:9px;border:1px solid #7fb9df88;color:#d9f1ff;background:#203b55';
+$('add').insertAdjacentElement('afterend',undoStarButton);
+function updateUndoButton(){undoStarButton.disabled=deletionHistory.length===0}
+function recordDeletion(){
+ deletionHistory.push({nodes:structuredClone(nodes),selected,discovered:structuredClone(discovered)});
+ if(deletionHistory.length>20)deletionHistory.shift();
+ updateUndoButton();
+}
+function undoDeletion(){
+ const previous=deletionHistory.pop();
+ if(!previous)return;
+ if(typeof exitSurface==='function'&&surfaceMode)exitSurface();
+ nodes=previous.nodes;selected=previous.selected;discovered=previous.discovered;
+ persistDiscoveries();
+ $('suggestions').replaceChildren();
+ rebuild();
+ updateUndoButton();
+}
+undoStarButton.onclick=undoDeletion;
+document.addEventListener('keydown',event=>{
+ if((event.ctrlKey||event.metaKey)&&!event.shiftKey&&event.key.toLowerCase()==='z'&&
+ !event.target.closest('input,textarea,[contenteditable="true"]')&&deletionHistory.length){
+  event.preventDefault();undoDeletion();
+ }
+});
+updateUndoButton();
+// Delete a selected star and all of its descendants to keep the idea tree consistent.
+const deleteStarButton=document.createElement('button');
+deleteStarButton.id='deleteStar';
+deleteStarButton.type='button';
+deleteStarButton.className='secondary';
+deleteStarButton.style.cssText='margin-top:9px;border:1px solid #df829c88;color:#ffd9e3;background:#4a2039';
+deleteStarButton.textContent='🗑 選択した星を削除';
+$('add').insertAdjacentElement('afterend',deleteStarButton);
+function updateDeleteButton(){deleteStarButton.disabled=!nodes.some(n=>n.id===selected)}
+const originalRebuild=rebuild;
+// A wrapper keeps the delete action enabled only for a real selection.
+rebuild=function(){originalRebuild();updateDeleteButton()};
+updateDeleteButton();
+deleteStarButton.onclick=()=>{
+ const current=nodes.find(n=>n.id===selected);
+ if(!current)return;
+ const ids=new Set([current.id]);
+ let changed=true;
+ while(changed){changed=false;for(const n of nodes){if(ids.has(n.parent)&&!ids.has(n.id)){ids.add(n.id);changed=true}}}
+ const en=localStorage.getItem('ideaGalaxyLanguage')==='en';
+ const message=en?`Delete “${current.text}” and ${ids.size-1} connected descendant star(s)? You can undo this deletion.`:`「${current.text}」と、その先につながる星 ${ids.size-1} 個を削除しますか？削除後に「取り消す」で元に戻せます。`;
+ if(!confirm(message))return;
+ recordDeletion();
+ nodes=nodes.filter(n=>!ids.has(n.id));
+ for(const key of Object.keys(discovered)){if([...ids].some(id=>key.startsWith(id+':')))delete discovered[key]}
+ persistDiscoveries();
+ selected=nodes.some(n=>n.id===current.parent)?current.parent:(nodes[0]?.id??null);
+ $('suggestions').replaceChildren();
+ if(typeof exitSurface==='function'&&surfaceMode)exitSurface();
+ rebuild();
+};
 $('create').onclick=create;$('add').onclick=add;$('suggest').onclick=suggest;$('childIdea').onkeydown=e=>{if(e.key==='Enter')add()};$('reset').onclick=()=>{if(confirm('すべての星を削除しますか？')){nodes=[];selected=null;discovered={};persistDiscoveries();$('suggestions').replaceChildren();rebuild()}};
 function zoom(mult){radius=Math.max(110,Math.min(3200,radius*mult))}$('zoomIn').onclick=()=>zoom(.8);$('zoomOut').onclick=()=>zoom(1.25);$('centerView').onclick=()=>{target.set(0,0,0);radius=650;azimuth=0;elevation=25*Math.PI/180;tilt=25;rebuild()};$('tilt').oninput=e=>{tilt=Number(e.target.value);elevation=tilt*Math.PI/180;$('tiltValue').textContent=tilt+'°';save()};$('autoOrbit').onclick=()=>{autoOrbit=!autoOrbit;$('autoOrbit').textContent='自動カメラ：'+(autoOrbit?'ON':'OFF')};$('moveMode').onclick=()=>{moveMode=!moveMode;$('moveMode').textContent='星を動かす：'+(moveMode?'ON':'OFF')};
 const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();function hit(e){const r=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height*2-1));raycaster.setFromCamera(pointer,camera);const targets=[...meshes.values()].map(g=>g.children[1]);const h=raycaster.intersectObjects(targets,false);return h.length?h[0].object.userData.nodeId:null}
@@ -378,4 +443,68 @@ let effectsOn=true;const effectsButton=document.createElement('button');effectsB
 function resize(){const w=Math.max(1,stage.clientWidth),h=Math.max(1,stage.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();surfaceCamera.aspect=w/h;surfaceCamera.updateProjectionMatrix()}new ResizeObserver(resize).observe(stage);resize();rebuild();status.hidden=true;const reduce=window.matchMedia('(prefers-reduced-motion:reduce)');let last=performance.now();function animate(now){requestAnimationFrame(animate);const dt=Math.min(.05,(now-last)/1000);last=now;if(autoOrbit&&!reduce.matches)azimuth+=dt*.22;camera.position.set(target.x+radius*Math.cos(elevation)*Math.sin(azimuth),target.y+radius*Math.sin(elevation),target.z+radius*Math.cos(elevation)*Math.cos(azimuth));camera.lookAt(target);for(const [id,obj] of meshes){const h=obj.children[0];if(!reduce.matches){h.scale.setScalar((id===selected?2.2:1.6)*(1+.08*Math.sin(now*.0015+id)));obj.children[1].rotation.y+=dt*(.12+(id%5)*.035);const extra=planetExtras.get(id);if(extra?.moonPivot)extra.moonPivot.rotation.y+=dt*(.25+(id%4)*.07);if(extra?.ring)extra.ring.rotation.z+=dt*.025}}ring.rotation.z+=reduce.matches?0:dt*.01;
 if(effectsOn&&!reduce.matches){galaxy.rotation.z+=dt*.002;for(let i=0;i<dust.length;i++)dust[i].material.opacity=.27+.23*Math.sin(now*.0012+i*1.3);for(const m of meteors){const cycle=((now*.001+m.phase)%13);if(cycle<1.7){const t=cycle/1.7;m.line.position.set(1050-t*1800,650-t*650,-150-m.phase*40);m.line.material.opacity=Math.sin(Math.PI*t)*.75}else m.line.material.opacity=0}}else{for(const m of meteors)m.line.material.opacity=0}
 if(surfaceMode){for(let i=0;i<landmarkMeshes.length;i++){const c=landmarkMeshes[i].crystal;c.rotation.y+=dt*.5;c.position.y=8+Math.sin(now*.0015+i)*.7}if(!reduce.matches){animateNature(now*.001);animateRealisticNature(now*.001)}renderer.render(surfaceScene,surfaceCamera)}else renderer.render(scene,camera)}requestAnimationFrame(animate);
+</script><script id="language-switcher">
+(()=>{
+const dictionary={
+'設定':'Settings','設定を開く':'Open settings','設定を閉じる':'Close settings',
+'揺れる木々、波打つ水面、漂う霧と光の粒子。生きている惑星を探索しよう。':'Explore living planets with swaying trees, rippling water, drifting mist, and glowing particles.',
+'① アイデアを入力して宇宙を作成。② 星をクリックして選択。③ 新しい星を追加したり、発想アシスタントを使ったりできます。':'1. Enter an idea to create your universe. 2. Click a star to select it. 3. Add new stars or use the idea assistant.',
+'最初のアイデア':'First idea','宇宙を作る':'Create universe','選択中の星':'Selected star','まだ星がありません':'No stars yet',
+'この星から広げるアイデア':'New idea branching from this star','新しい星を追加':'Add a new star',
+'✧ 発想アシスタント':'✧ Idea assistant','選んだ星から3つの発想を提案します（ルールベース・AI APIなし）。':'Get three creative suggestions for the selected star (rule-based; no paid AI API).',
+'🗑 選択した星を削除':'🗑 Delete selected star','↶ 削除を取り消す':'↶ Undo deletion','直前の星の削除を元に戻す (Ctrl+Z)':'Restore the last deleted stars (Ctrl+Z)','アイデアを3つ提案':'Suggest 3 ideas','すべてリセット':'Reset everything',
+'ドラッグ：視点回転／右ドラッグ：平行移動／ホイール：ズーム／星をクリック：選択。星のドラッグ移動は「星を動かす」モードで行えます。':'Drag: rotate view · Right-drag: pan · Scroll: zoom · Click a star: select. Enable Move stars mode to drag stars.',
+'以前のバージョンと同じ保存キーを使用します。ブラウザの保存データを消すと失われる場合があります。':'Your ideas are saved in this browser. Clearing browser data may delete them.',
+'星を動かす：OFF':'Move stars: OFF','星を動かす：ON':'Move stars: ON',
+'✧ 星雲・銀河・流れ星の中でアイデアを探そう':'✧ Discover ideas among nebulae, galaxies, and shooting stars',
+'🔎 惑星を探索':'🔎 Explore planets','🛬 惑星に降り立つ':'🛬 Land on a planet',
+'惑星探検':'Planet exploration','地形を生成中…':'Generating terrain…',
+'矢印キー・WASDで歩き、← →で向きを変えられます。':'Use WASD or arrow keys to walk; ← → to turn.',
+'🚀 宇宙へ戻る':'🚀 Return to space','未知の地表':'Unknown terrain','光る目印を探して近づこう。':'Find and approach the glowing markers.',
+'発見する':'Discover','視点の傾き':'Camera tilt','カメラの高さを調整':'Adjust camera height',
+'自動カメラ：OFF':'Auto camera: OFF','自動カメラ：ON':'Auto camera: ON',
+'3D宇宙を読み込み中…':'Loading 3D universe…',
+'🔎 惑星の未知を探索':'🔎 Discover planetary secrets',
+'① 宇宙で惑星を選ぶ → ② 設定を開いて「探索する」 → ③ 発見をアイデアの星にできます。各惑星に3つの秘密が眠っています。':'1. Select a planet. 2. Open Settings and explore. 3. Turn discoveries into idea stars. Every planet holds three secrets.',
+'🛬 惑星の地表を探索':'🛬 Explore the planet surface',
+'宇宙で惑星を選択し、地表に降り立ちます。光る結晶に近づくと秘密を発見できます。':'Select a planet, land on its surface, and approach glowing crystals to discover secrets.',
+'選択した惑星に降り立つ':'Land on selected planet',
+'宇宙で惑星を選択してから、⚙ 設定を開き、ここで色を変更できます。設定を閉じると宇宙に戻れます。':'Select a planet, open Settings, and change its color here. Close Settings to return to space.',
+'まだ秘密が隠されています。探索すると手がかりが見つかります。':'A secret is still hidden here. Explore to find clues.',
+'この発見をアイデアにする ＋':'Add discovery as idea +','🔎 探索して発見する':'🔎 Explore and discover',
+'このアイデアを星にする ＋':'Add this idea as a star +','追加しました ✓':'Added ✓',
+'幻想エフェクト：ON':'Visual effects: ON','幻想エフェクト：OFF':'Visual effects: OFF',
+'前進':'Forward','後退':'Backward','左を向く':'Turn left','右を向く':'Turn right',
+'拡大':'Zoom in','縮小':'Zoom out','中心に戻す':'Center view',
+'例：未来の学校':'e.g. School of the future','例：教室のない学校':'e.g. A school without classrooms',
+'未来の学校':'School of the future',
+'✨ 光る結晶を探そう':'✨ Find a glowing crystal','結晶のそばに到着！秘密を調べられます。':'You reached the crystal! Investigate its secret.',
+'✨ 秘密を発見する':'✨ Reveal secret','まだ星がありません':'No stars yet',
+'惑星の色':'Planet color','色を変更':'Change color','惑星':'Planet','星':'Star',
+'海の惑星':'Ocean planet','森の惑星':'Forest planet','砂漠の惑星':'Desert planet','溶岩の惑星':'Lava planet',
+'選択してください':'Please select','探索する':'Explore','戻る':'Back'
+};
+const rules=[
+[/^✦ 星 (\d+) 個 · 3D$/,(_,n)=>`✦ ${n} stars · 3D`],
+[/^🔒 未知の発見 (\d+)$/,(_,n)=>`🔒 Unknown discovery ${n}`],
+[/^最も近い結晶まで約(\d+)m。前後に進み、向きを変えて探索してください。$/,(_,n)=>`Nearest crystal: about ${n} m. Move and turn to explore.`],
+[/^「(.+)」の発見：(\d+) \/ 3$/,(_,n,k)=>`Discoveries for “${n}”: ${k} / 3`],
+[/^(.+)の視点：(.+)$/,(_,a,b)=>`${a} perspective: ${b}`],
+[/^✨ 発見済み：/,()=> '✨ Discovered: '],
+[/^🔎 未知の発見：/,()=> '🔎 Unknown discovery: ']
+];
+const originals=new WeakMap();
+const tracked=new Set();
+let lang=localStorage.getItem('ideaGalaxyLanguage')==='en'?'en':'ja';
+function translate(value){const trim=value.trim();if(!trim)return value;let result=dictionary[trim];if(result===undefined){for(const [re,fn] of rules){if(re.test(trim)){result=trim.replace(re,fn);break}}}if(result===undefined)return value;return value.replace(trim,result)}
+function excluded(node){const el=node.parentElement;return !el||!!el.closest('script,style,textarea,#languagePicker,#selected,#suggestions input')||!!el.closest('input')}
+function applyText(node){if(excluded(node))return;const last=tracked.has(node)?originals.get(node):undefined;const english=last===undefined?'':translate(last);if(last===undefined||node.nodeValue!==last&&node.nodeValue!==english){originals.set(node,node.nodeValue);tracked.add(node)}const original=originals.get(node);const next=lang==='en'?translate(original):original;if(node.nodeValue!==next)node.nodeValue=next}
+function applyAttr(el,name){const key='langOrig'+name;const previous=el.dataset[key];const now=el.getAttribute(name);if(now===null)return;const translated=previous===undefined?'':translate(previous);if(previous===undefined||now!==previous&&now!==translated)el.dataset[key]=now;const original=el.dataset[key];const next=lang==='en'?translate(original):original;if(now!==next)el.setAttribute(name,next)}
+function scan(root){if(root.nodeType===3){applyText(root);return}if(root.nodeType!==1&&root.nodeType!==9)return;if(root.nodeType===1){for(const attr of ['placeholder','title','aria-label'])if(root.hasAttribute(attr))applyAttr(root,attr)}const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);while(walker.nextNode())applyText(walker.currentNode);if(root.querySelectorAll)for(const el of root.querySelectorAll('[placeholder],[title],[aria-label]'))for(const attr of ['placeholder','title','aria-label'])if(el.hasAttribute(attr))applyAttr(el,attr)}
+const picker=document.createElement('div');picker.id='languagePicker';picker.innerHTML='<label for="appLanguage">🌐 Language</label><select id="appLanguage" aria-label="Interface language"><option value="ja">日本語</option><option value="en">English</option></select>';document.body.append(picker);
+const select=picker.querySelector('select');select.value=lang;select.onchange=()=>{lang=select.value;localStorage.setItem('ideaGalaxyLanguage',lang);document.documentElement.lang=lang;scan(document.body)};
+document.documentElement.lang=lang;scan(document.body);
+const observer=new MutationObserver(changes=>{for(const c of changes){if(c.type==='characterData')applyText(c.target);else if(c.type==='attributes'){if(c.attributeName!=='data-lang-orig')applyAttr(c.target,c.attributeName)}else for(const n of c.addedNodes)scan(n)}});
+observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['placeholder','title','aria-label']});
+})();
 </script></body></html>
